@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: myweb-deploy
+spec:
+  selector:
+    matchLabels:
+      app: myweb
+  template:
+    metadata:
+      labels:
+        app: myweb
+    spec:
+
+      containers:
+      - name: myweb
+        image: nginx
+        ports:
+        - containerPort: 80
+        volumeMounts:
+          - name: nginx-conf
+            mountPath: /etc/nginx/
+          # - name: log
+          #   mountPath: /var/log/nginx
+      volumes:
+        - name: nginx-conf
+          configMap:
+            name: nginx-conf  
+        # - name: log
+        #   nfs:
+        #     server: 172.28.33.2
+        #     path: /logs

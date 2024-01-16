@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mywas
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: mywas
+  template:
+    metadata:
+      labels:
+        app: mywas
+    spec:
+      containers:
+      - name: mywas
+        image: jongdo737/rapa-challange:tomcat20
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
+      initContainers:
+      - name: init-mysql
+        image: busybox:1.28
+        command: ['sh', '-c', "until nslookup mysql-svc.default.svc.cluster.local; do echo waiting for myservice; sleep 2; done"]
+      - name: init-redis
+        image: busybox:1.28
+        command: ['sh', '-c', "until nslookup redis-svc.default.svc.cluster.local; do echo waiting for myservice; sleep 2; done"]

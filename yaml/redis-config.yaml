@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: redis-config
+data:
+  redis.conf: |
+    bind 0.0.0.0
+    protected-mode no
+    port 6379
+    daemonize yes
+    pidfile /var/run/redis.pid
+    databases 16
+    requirepass frodo5020!!
+    save 900 1
+    save 300 10
+    save 60 10000
+    dbfilename dump.rdb
+    dir ./
+    logfile "/var/log/redis/redis-server.log"
+    maxmemory 100mb
+    maxmemory-policy allkeys-lru
