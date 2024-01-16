@@ -3,7 +3,18 @@ kind: Kustomization
 patchesStrategicMerge:
 - was-deployment.yaml
 resources:
-- ./*.yaml
+- db-ebs.yaml
+- ingress.yaml
+- redis-config.yaml
+- redis-deployment.yaml
+- redis-svc.yaml
+- storage-class.yaml
+- was-deployment.yaml
+- was-svc.yaml
+- web-config.yaml
+- web-deployment.yaml
+- web-svc.yaml
+- db-svc.yaml  # 파일명이 'db-svc.yaml'인지 확인하세요. 'db-svc'와 'db-svc.yaml'이 다를 수 있습니다.
 images:
 - name: cicd-image
   newName: jongdo737/rapa-cidc
