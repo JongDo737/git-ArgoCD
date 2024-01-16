@@ -3,7 +3,7 @@ kind: Kustomization
 patchesStrategicMerge:
 - was-deployment.yaml
 resources:
-- was-deployment.yaml
+- ./*.yaml
 images:
 - name: cicd-image
   newName: jongdo737/rapa-cidc
