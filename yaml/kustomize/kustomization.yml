@@ -1,0 +1,11 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+patchesStrategicMerge:
+- was-deployment.yaml
+resources:
+- was-deployment.yaml
+images:
+- name: cicd-image
+  newName: jongdo737/rapa-cidc
+  newTag: "17"
+namespace: default
