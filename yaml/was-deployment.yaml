@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: mywas
-        image: jongdo737/rapa-challange:tomcat20
+        image: cicd-image
         imagePullPolicy: Always
         ports:
         - containerPort: 8080
